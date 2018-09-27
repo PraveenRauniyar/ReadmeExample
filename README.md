@@ -2,7 +2,7 @@
 This repository is for printing forms in bahmni so that they can be filled offline. Currently it supports only forms 1.0(means forms under 'All Observation templates, not form builder forms).
 ## Dev Setting
 This is completely written in angular-6.<br><br>
-###Prerequisites<br><br>
+### Prerequisites
 `brew install npm`<br><br>
 `brew install http-server`  (Install http-server for checking test coverage)
 #### Clone the Repository and install the dependencies
@@ -56,7 +56,6 @@ Run following command tho fix eslint erros.
 `ng lint print-forms --fix`
 
 ## Deployment Steps
-<br><br>
 ### Prerequisites
 `yum install wget`
 ### Installation Steps

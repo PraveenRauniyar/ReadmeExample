@@ -10,8 +10,8 @@ Clone the repository in bahmni folder by running following command.<br><br>
 `git clone https://github.com/bahmni-msf/print-forms.git`<br><br>
 Install all the dependencies by running following commands.<br><br>
 `cd print-forms && npm install -g @angular/cli && npm install && npm run build`
-<br><br>
-####Add print-forms module to bahmni.
+<br>
+#### Add print-forms module to bahmni.
 Add following config in `default-config/openmrs/apps/home/extension.json` file to display print icon on dashboard.<br><br>
 `"PrintForms": {
    "id": "bahmni.print.forms",
@@ -32,7 +32,7 @@ Run the following script inside your bahmni-vagrant-box and provide your mysql d
 Run following script inside your bahmni-vagrant-box.<br><br>
 `sudo sh /bahmni/print-forms/scripts/dev-setup.sh`
 
-### Required privileges to access print-forms app
+#### Required privileges to access print-forms app
 * Make sure the logged-in user has the privileges **Get Concepts** and **app:print-forms**.
 * Optional:
   * It is recommended to create a role **Print-Forms-App** and inherit the role **Bahmni-App-User-Login** and assign above two privileges to **Print-Forms-App**
@@ -57,10 +57,9 @@ Run following command tho fix eslint erros.
 
 ## Deployment Steps
 <br><br>
-###Prerequisites
+### Prerequisites
 `yum install wget`
-<br><br>
-###Installation Steps
+### Installation Steps
 
 * Create a /print-forms url in bahmni.(Do this inside bahmni-vagrant-box)<br><br>
 `sudo echo "Alias /print-forms /var/www/print-forms/" > /etc/httpd/conf.d/print_forms_ssl.conf && sudo chown bahmni:bahmni /etc/httpd/conf.d/print_forms_ssl.conf && sudo /etc/init.d/httpd restart`

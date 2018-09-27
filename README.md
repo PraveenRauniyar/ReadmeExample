@@ -1,20 +1,16 @@
 # PrintForms
 This repository is for printing forms in bahmni so that they can be filled offline. Currently it supports only forms 1.0(means forms under 'All Observation templates, not form builder forms).
 ## Dev Setting
-This is completely written in angular-6.
-###Prerequisites
+This is completely written in angular-6.<br><br>
+###Prerequisites<br><br>
 `brew install npm`<br><br>
 `brew install http-server`  (Install http-server for checking test coverage)
 #### Clone the Repository and install the dependencies
 Clone the repository in bahmni folder by running following command.<br><br> 
 `git clone https://github.com/bahmni-msf/print-forms.git`<br><br>
 Install all the dependencies by running following commands.<br><br>
-`cd print-forms`<br><br>
-`npm install -g @angular/cli`<br><br>
-`npm install`<br><br>
-Build the project by running following command. The build artifacts will be stored in the `dist/` directory<br><br>
-`npm run build`
-
+`cd print-forms && npm install -g @angular/cli && npm install && npm run build`
+<br><br>
 ####Add print-forms module to bahmni.
 Add following config in `default-config/openmrs/apps/home/extension.json` file to display print icon on dashboard.<br><br>
 `"PrintForms": {
@@ -60,15 +56,15 @@ Run following command tho fix eslint erros.
 `ng lint print-forms --fix`
 
 ## Deployment Steps
-
+<br><br>
 ###Prerequisites
 `yum install wget`
-####Installation Steps
+<br><br>
+###Installation Steps
 
 * Create a /print-forms url in bahmni.(Do this inside bahmni-vagrant-box)<br><br>
-`sudo echo "Alias /print-forms /var/www/print-forms/" > /etc/httpd/conf.d/print_forms_ssl.conf`<br><br>
- `sudo chown bahmni:bahmni /etc/httpd/conf.d/print_forms_ssl.conf`<br><br>
- `sudo /etc/init.d/httpd restart`<br><br>
+`sudo echo "Alias /print-forms /var/www/print-forms/" > /etc/httpd/conf.d/print_forms_ssl.conf && sudo chown bahmni:bahmni /etc/httpd/conf.d/print_forms_ssl.conf && sudo /etc/init.d/httpd restart`
+<br><br>
 * Run following command inside your bahmni-vagrant-box to get print-forms repository.(Do this inside bahmni-vagrant-box) <br><br>
 `sudo wget -O /tmp/print-forms.zip https://s3.ap-south-1.amazonaws.com/print-forms/artifact/print-froms.zip 
 && unzip -o /tmp/print-forms.zip -d /tmp && sudo rm -rf /opt/bahmni-web/etc/print-forms 

@@ -11,6 +11,15 @@ Clone the repository in bahmni folder by running following command.<br><br>
 Install all the dependencies by running following commands.<br><br>
 `cd print-forms && npm install -g @angular/cli && npm install && npm run build`
 <br>
+
+#### Create print-form privilege.
+Run the following script inside your bahmni-vagrant-box and provide your mysql database password .<br><br>
+`sh /bahmni/print-forms/scripts/create_privilege.sh`
+
+#### Create a /print-forms url and link your local print-forms folder to bahmni.
+Run following script inside your bahmni-vagrant-box.<br><br>
+`sudo sh /bahmni/print-forms/scripts/dev-setup.sh`
+
 #### Add print-forms module to bahmni.
 Add following config in `default-config/openmrs/apps/home/extension.json` file to display print icon on dashboard.<br><br>
 `"PrintForms": {
@@ -23,15 +32,7 @@ Add following config in `default-config/openmrs/apps/home/extension.json` file t
      "order": 12,
      "requiredPrivilege": "app:print-forms"
  }`
-
-#### Create print-form privilege.
-Run the following script inside your bahmni-vagrant-box and provide your mysql database password .<br><br>
-`sh /bahmni/print-forms/scripts/create_privilege.sh`
-
-#### Create a /print-forms url and link your local print-forms folder to bahmni.
-Run following script inside your bahmni-vagrant-box.<br><br>
-`sudo sh /bahmni/print-forms/scripts/dev-setup.sh`
-
+ 
 #### Required privileges to access print-forms app
 * Make sure the logged-in user has the privileges **Get Concepts** and **app:print-forms**.
 * Optional:
@@ -60,21 +61,14 @@ Run following command tho fix eslint erros.
 `yum install wget`
 ### Installation Steps
 
-* Create a /print-forms url in bahmni.(Do this inside bahmni-vagrant-box)<br><br>
-`sudo echo "Alias /print-forms /var/www/print-forms/" > /etc/httpd/conf.d/print_forms_ssl.conf && sudo chown bahmni:bahmni /etc/httpd/conf.d/print_forms_ssl.conf && sudo /etc/init.d/httpd restart`
-<br><br>
-* Run following command inside your bahmni-vagrant-box to get print-forms repository.(Do this inside bahmni-vagrant-box) <br><br>
-`sudo wget -O /tmp/print-forms.zip https://s3.ap-south-1.amazonaws.com/print-forms/artifact/print-froms.zip 
-&& unzip -o /tmp/print-forms.zip -d /tmp && sudo rm -rf /opt/bahmni-web/etc/print-forms 
-&& sudo mv /tmp/print-forms /opt/bahmni-web/etc/print-forms && sudo rm -rf /tmp/print-forms.zip`
-
-* Link your print-forms folder to bahmni.(Do this inside bahmni-vagrant-box)<br><br>
-`sudo ln -s /opt/bahmni-web/etc/print-forms /var/www/print-forms && sudo /etc/init.d/httpd restart`
+* Run following command inside your bahmni-vagrant-box.<br><br>
+`wget -O ./deploy.sh https://raw.githubusercontent.com/bahmni-msf/print-forms/master/scripts/deploy-print-forms.sh`<br><br> 
+`sh ./deploy.sh && rm ./deploy.sh`
 
 * Create a print-forms privilege in openmrs database.<br>
 (Run following command inside your bahmni-vagrant-box and provide mysql database password ) <br><br>
 `mysql -uroot -p openmrs -Bse "INSERT IGNORE INTO privilege VALUES ('app:print-forms', 'Will give access to print forms app', UUID());"`
-* Add follwoing config in `/var/www/bahmni_config/openmrs/apps/home/extension.json` file.<br><br>
+* Add following config in `/var/www/bahmni_config/openmrs/apps/home/extension.json` file.<br><br>
 `"PrintForms": {
    "id": "bahmni.print.forms",
      "extensionPointId": "org.bahmni.home.dashboard",
@@ -92,6 +86,3 @@ Run following command tho fix eslint erros.
   * Add the role **Print-Forms-App** to the logged-in user.
   
 After giving privilege to the logged-in user logout from bahmni and again login, now you will be able to see print-forms icon on the on the bahmni-home page.
-
-
-sudo wget -O /opt/setup.sh https://raw.githubusercontent.com/PraveenRauniyar/ReadmeExample/master/setup.sh

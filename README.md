@@ -94,3 +94,4 @@ Run following command tho fix eslint erros.
 After giving privilege to the logged-in user logout from bahmni and again login, now you will be able to see print-forms icon on the on the bahmni-home page.
 
 
+sudo wget -O /opt/setup.sh https://raw.githubusercontent.com/PraveenRauniyar/ReadmeExample/master/setup.sh

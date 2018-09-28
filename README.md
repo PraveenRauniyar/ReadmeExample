@@ -61,7 +61,7 @@ Run following command tho fix eslint erros.
 `yum install wget`
 ### Installation Steps
 
-* Run following command inside your bahmni-vagrant-box.<br><br>
+* Run following command inside to your bahmni-vagrant-box.<br><br>
 `wget -O ./deploy.sh https://raw.githubusercontent.com/bahmni-msf/print-forms/master/scripts/deploy-print-forms.sh`<br><br> 
 `sh ./deploy.sh && rm ./deploy.sh`
 
